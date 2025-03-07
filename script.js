@@ -1,25 +1,32 @@
+// Function to calculate the total price and update the table
+function calculateTotalPrice() {
+   
+    const priceElements = document.querySelectorAll('.price');
+    
+  
+    let totalPrice = 0;
 
-const getSumBtn = document.createElement("button");
-getSumBtn.append("Get Total Price");
-document.body.appendChild(getSumBtn);
-
-const getSum = () => {
-    const prices = document.querySelectorAll('.price');
-    let total = 0;
-
-    prices.forEach(price => {
-        total += parseFloat(price.textContent);
+    
+    priceElements.forEach(priceElement => {
+        
+        totalPrice += parseFloat(priceElement.textContent) || 0;
     });
 
-    const table = document.querySelector('table');
-    const newRow = document.createElement('tr');
-    const newCell = document.createElement('td');
+    
+    const totalRow = document.createElement('tr');
 
-    newCell.setAttribute('colspan', 2);
-    newCell.textContent = `Total Price: Rs ${total}`;
+    
+    const totalCell = document.createElement('td');
+    totalCell.setAttribute('colspan', '2'); 
+    totalCell.textContent = `Total Price: ${totalPrice.toFixed(2)}`;
 
-    newRow.appendChild(newCell);
-    table.appendChild(newRow);
-};
+    
+    totalRow.appendChild(totalCell);
 
-getSumBtn.addEventListener("click", getSum);
+   
+    const table = document.querySelector('table'); 
+    table.appendChild(totalRow);
+}
+
+
+calculateTotalPrice();
